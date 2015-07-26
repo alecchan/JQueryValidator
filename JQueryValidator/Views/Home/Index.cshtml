@@ -1,0 +1,46 @@
+﻿@model JQueryValidator.Models.Person
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="output">
+    
+</div>
+
+<script id="tmp" type="text/html">
+    <form action="/Home/Index" method="post">
+        <div>
+            <label for="FirstName">FirstName</label>
+            <input class="text-box single-line" data-val="true" data-val-required="The FirstName field is required." id="FirstName" name="FirstName" type="text" value="@Model.FirstName" />
+            <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+        </div>
+        <div>
+            <label>Last Name: </label>
+            <input class="text-box single-line" data-val="true" data-val-required="The LastName field is required." id="LastName" name="LastName" type="text" value="" />
+            <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+        </div>
+        <button>Submit</button>
+            </form>
+</script>
+
+<script>
+
+    function click() {
+
+    }
+
+    $(document).ready(function () {
+        var tmp = $("#tmp").html();
+        $("#output").html(tmp);
+        $.validator.unobtrusive.parse("form");
+
+        $("#output").on("submit", function () {
+            event.preventDefault();
+            $(this).validator();
+        });
+    });
+
+</script>
